@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_opinion_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Opinion
+  <% end %>
+  <h1>Listing opinions</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>User</th>
+            <th>Restaurant</th>
+            <th>Like</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @opinions) do |opinion| %>
+            <td><%= opinion.user_id %></td>
+            <td><%= opinion.restaurant_id %></td>
+            <td><%= opinion.like %></td>
+            <td><%= link_to 'Show', opinion %></td>
+        <td><%= link_to 'Edit', edit_opinion_path(opinion) %></td>
+        <td><%= link_to 'Destroy', opinion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
