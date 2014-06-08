@@ -1,13 +1,22 @@
 <div class="page-header">
-  <%= link_to users_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to @user, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Show
-  <% end %>
-  <h1>Editing user</h1>
+  <h1>Settings</h1>
 </div>
 
-<%= render 'form' %>
+<div id='picture'>
+
+<%= image_tag('https://scontent-a-sea.xx.fbcdn.net/hphotos-ash2/t1.0-9/554110_603821889660417_2091454873_n.jpg') %>
+
+<%= link_to users_path, :class => 'btn btn-default' do %>
+  <span class="glyphicon glyphicon-camera"></span>
+  Take another photo
+<% end %>
+
+</div>
+
+<br/>
+
+<%= link_to users_path, :class => 'btn btn-primary' do %>
+  <span class="glyphicon"></span>
+  Save
+<% end %>
+

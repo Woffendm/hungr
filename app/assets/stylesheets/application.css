@@ -15,3 +15,16 @@
 .home {
   text-align: center;
 }
+.home .btn-lg {
+  font-size: 14px;
+}
+
+#result {
+  font-style: italic;
+}
+
+#picture img {
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+}
