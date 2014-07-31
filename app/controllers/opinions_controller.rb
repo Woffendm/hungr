@@ -4,6 +4,9 @@ class OpinionsController < ApplicationController
   # GET /opinions
   # GET /opinions.json
   def index
+    if @current_user.opinions.blank?
+      Opinion.create(:restaurant_id => Restaurant.first.id, :user_id => @current_user.id)
+    end
     Restaurant.where("id NOT IN (?)", Opinion.where(:user_id => @current_user.id).pluck(:restaurant_id)).each do |restaurant|
       Opinion.create(:user_id => @current_user.id, :restaurant_id => restaurant.id)
     end
