@@ -1,10 +1,7 @@
 <div class="page-header">
-  <%= link_to new_opinion_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New
-  <% end %>
   <h1>Opinions</h1>
 </div>
+<%= form_tag("update_opinions", :method => "post") do  %>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
@@ -16,32 +13,20 @@
     </thead>
 
     <tbody>
-      <tr>
-        <tr>
-              <td>Baja Fresh</td>
-              <td><%= select_tag 'like', options_from_collection_for_select(['Like', 'Meh', 'Dislike'], :to_s, :to_s, 'Dislike') %></td>
+        <% @opinions.each do |opinion| %>
+            <tr>
+              <td><%= opinion.restaurant.name %></td>
+              <td>
+                <%= select_tag "opinions[#{opinion.id}][like]", options_from_collection_for_select([[nil, nil], ['Like', 1], ['Meh', 0], ['Dislike', -1]], :last, :first, opinion.like) %>
+              </td>
             </tr>
-        
-            <td>Del Alma</td>
-            <td><%= select_tag 'like', options_from_collection_for_select(['Like', 'Meh', 'Dislike'], :to_s, :to_s, 'Like') %></td>
-          </tr>
-          <tr>
-                <td>Mc Donalds</td>
-                <td><%= select_tag 'like', options_from_collection_for_select(['Like', 'Meh', 'Dislike'], :to_s, :to_s, 'Dislike') %></td>
-              </tr>
-              <tr>
-                    <td>Taco Bell</td>
-                    <td><%= select_tag 'like', options_from_collection_for_select(['Like', 'Meh', 'Dislike'], :to_s, :to_s, 'Dislike') %></td>
-                  </tr>
-                  <tr>
-                        <td>Tokyo Grill</td>
-                        <td><%= select_tag 'like', options_from_collection_for_select(['Like', 'Meh', 'Dislike'], :to_s, :to_s, 'Dislike') %></td>
-                      </tr>
-                      <tr>
-                            <td>Yogurt Extreme</td>
-                            <td><%= select_tag 'like', options_from_collection_for_select(['Like', 'Meh', 'Dislike'], :to_s, :to_s, 'Dislike') %></td>
-                          </tr>
-
+          <% end %>
     </tbody>
   </table>
 </div>
+<%= submit_tag "Save", :class => "btn btn-primary" %>
+<br/>
+<br/>
+<br/>
+<% end %>
+

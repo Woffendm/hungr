@@ -10,6 +10,11 @@ Hungr::Application.routes.draw do
   resources :users
   
   root 'overviews#index'
+  match 'login', :controller => :application, :action => :login, :via => :get
+  match 'logout', :controller => :application, :action => :logout, :via => :get
+  match 'authenticate', :controller => :application, :action => :authenticate, :via => :post
+  match 'update_opinions', :controller => :opinions, :action => :update_opinions, :via => :post
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

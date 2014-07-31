@@ -26,15 +26,42 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Hungr", "#", :class => "navbar-brand" %>
+        <%= link_to "Hungr", overviews_path, :class => "navbar-brand" %>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">Friends</a></li>
-          <li><a href="#contact">Opinions</a></li>
-          <li><a href="#contact">Settings</a></li>
-          
+          <li class="<%= cp(overviews_path) %>">
+            <%= link_to overviews_path do %>
+              <span class="glyphicon glyphicon-home"></span>
+              Home
+            <% end %>
+          </li>
+          <li class="<%= cp(friends_path) %>">
+            <%= link_to friends_path do %>
+              <span class="glyphicon glyphicon-user"></span>
+              Friends
+            <% end %>
+          </li>
+          <li class="<%= cp(opinions_path) %>">
+            <%= link_to opinions_path do %>
+              <span class="glyphicon glyphicon-heart"></span>
+              Opinions
+            <% end %>  
+          </li>
+          <li class="<%=  %>">
+            <a href="#contact">
+              <span class="glyphicon glyphicon-wrench"></span>
+              Settings
+            </a>
+          </li>
+          <% if @current_user %>
+            <li class="<%= cp(logout_path) %>">
+              <%= link_to logout_path do %>
+                <span class="glyphicon glyphicon-log-out"></span>
+                Log Out
+              <% end %>  
+            </li> 
+          <% end %>
         </ul>
       </div>
     </div>

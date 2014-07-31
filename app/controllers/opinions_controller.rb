@@ -4,7 +4,18 @@ class OpinionsController < ApplicationController
   # GET /opinions
   # GET /opinions.json
   def index
-    @opinions = Opinion.all
+    Restaurant.where("id NOT IN (?)", Opinion.where(:user_id => @current_user.id).pluck(:restaurant_id)).each do |restaurant|
+      Opinion.create(:user_id => @current_user.id, :restaurant_id => restaurant.id)
+    end
+    @opinions = Opinion.where(:user_id => @current_user.id).includes(:restaurant)
+  end
+  
+  def update_opinions
+    params[:opinions].each do |id, values|
+      next if values['like'].blank?
+      Opinion.find(id).update(:like => values['like'])
+    end
+    redirect_to opinions_path
   end
 
   # GET /opinions/1

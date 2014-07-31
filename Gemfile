@@ -47,3 +47,4 @@ end
 
 
 gem 'bootstrap-generators', '~> 3.1.1'
+gem 'oauth'
